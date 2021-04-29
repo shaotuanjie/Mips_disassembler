@@ -146,7 +146,7 @@ jTypeMasks = {
 # disassemble(32-bit int instruction) -> Instruction (string)
 
 def zk(zahl): # 16 bit immedieates, calculate 2-compliment
-	msb = zahl >> 15 # most significant bit, indicates if negative or positiv
+	msb = zahl >> 15 # most significant bit, indicates if negative or positive
 	if(msb==0):
 		return zahl
 	else:
@@ -203,7 +203,7 @@ def disassemble(instruction):
 		rt = registers[(a & 0b00000000000111110000000000000000) >> 16]
 		rs = registers[(a & 0b00000011111000000000000000000000) >> 21]
 		imm = (a & iTypeMasks["imm"])
-		return opcodes[opcode] + " " + rt + ", " + str(imm) + "(" + rs + ")"
+		return opcodes[opcode] + " " + rt + ", " + str(zk(imm)) + "(" + rs + ")"
 		# if(imm>=0x8000):
 		# 	return  opcodes[opcode] + " " + rt + ", " + str(hex(imm)) + "(" + rs + ")"
 		# else:
